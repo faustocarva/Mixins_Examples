@@ -1,6 +1,7 @@
 #include "mytask.h"
 #include "loggingtask.h"
 #include "timingtask.h"
+#include "taskadapter.h"
 
 int main(void) {
 
@@ -38,4 +39,10 @@ int main(void) {
   typedef TimingTask< LoggingTask< MyTask > > Task_;
   Task_ t6;
   t6.Execute();
+  std::cout  << "\n";
+
+  std::cout << "Task 7 - usando um taskadapter" << std::endl;
+  TaskAdapter<TimingTask < LoggingTask< MyTask > > > t7;
+  ITask* it = &t7;
+  it->Execute();
 }
